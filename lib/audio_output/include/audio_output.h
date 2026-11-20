@@ -41,3 +41,5 @@ uint8_t audio_output_get_volume(void);
 
 /* Puffer leeren und stumm schalten, z. B. beim Quellenwechsel. */
 void audio_output_stop(void);
+
+extern bool audio_output_init;
