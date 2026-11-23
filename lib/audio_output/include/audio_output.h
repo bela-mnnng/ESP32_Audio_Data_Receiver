@@ -16,6 +16,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
+#include <AudioTools.h>
 
 #define AUDIO_OUTPUT_DEFAULT_RATE_HZ 44100
 
@@ -42,4 +43,3 @@ uint8_t audio_output_get_volume(void);
 /* Puffer leeren und stumm schalten, z. B. beim Quellenwechsel. */
 void audio_output_stop(void);
 
-extern bool audio_output_init;
