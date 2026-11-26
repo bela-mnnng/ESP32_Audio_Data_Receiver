@@ -17,6 +17,7 @@ void setup() {
     if (!audio_output_init()) {                 // A
         enter_error_state("audio_output_init fehlgeschlagen");
     }
+    audio_output_test_tone(2000);               // TODO entfernen, sobald der Ton geht
     bt_sink_init(mode_controller_post);         // A
     wifi_manager_init(mode_controller_post);    // B
     spotify_connect_init(mode_controller_post); // B

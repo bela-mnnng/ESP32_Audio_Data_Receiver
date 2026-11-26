@@ -42,3 +42,9 @@ uint8_t audio_output_get_volume(void);
 /* Puffer leeren und stumm schalten, z. B. beim Quellenwechsel. */
 void audio_output_stop(void);
 
+/*
+ * Nur zum Testen: spielt duration_ms lang einen 440-Hz-Ton über
+ * audio_output_write(). Blockiert so lange.
+ */
+void audio_output_test_tone(uint32_t duration_ms);
+
