@@ -5,19 +5,10 @@
  * Owner: Person A (Review durch Person B)
  * Die Komponenten von Person B binden diesen Header NICHT ein.
  * Sie melden Ereignisse über den app_event_cb_t, den main.cpp verdrahtet.
- * Beschreibung: docs/schnittstellen.md, Zustände: docs/uml/uml.md
+ * Beschreibung: docs/interfaces.md, Zustände: docs/uml/uml.md
  */
 #include "app_events.h"
-
-typedef enum {
-    MODE_BOOT = 0,
-    MODE_ERROR,
-    MODE_WLAN_VERBINDEN,
-    MODE_WLAN_BEREIT,
-    MODE_WLAN_STREAMING,
-    MODE_IDLE,
-    MODE_BT_STREAMING
-} app_mode_t;
+#include "mode_fsm.h"       // app_mode_t
 
 /* Nach allen anderen *_init()-Aufrufen in setup(). Startet WLAN und Bluetooth. */
 void mode_controller_init(void);

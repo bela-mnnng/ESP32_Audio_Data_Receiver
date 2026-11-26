@@ -1,28 +1,27 @@
-#include "audio_output.h"
+#include "AudioTools.h"
 #include "AudioTools/AudioLibs/AudioBoardStream.h"   // braucht arduino-audio-driver
+#include "audio_output.h"
+
+// Genau EIN Board-Objekt für das ganze Programm. Als lokale Variable in
+// audio_output_init() würde es am Ende der Funktion wieder zerstört.
+static AudioBoardStream kit(AudioKitEs8388V1);   // kein Ton? AudioKitEs8388V2 probieren
 
 bool audio_output_init(void) {
-    
-    // Implement initialization of AudioTools and I2S here
-    AudioInfo info(44100, 2, 16);
-    AudioBoardStream kit(AudioKitEs8388V1);   // or AudioKitEs8388V2
-    Serial.print("Audio output sample rate: ");
-    Serial.println(info.sample_rate);
-
     auto cfg = kit.defaultConfig(TX_MODE);
-    cfg.sample_rate     = 44100;
+    cfg.sample_rate     = AUDIO_OUTPUT_DEFAULT_RATE_HZ;
     cfg.channels        = 2;
     cfg.bits_per_sample = 16;
     cfg.sd_active       = false;   // SD-Karte aus, sonst belegt sie Pins (z. B. GPIO 13)
     cfg.buffer_count    = 8;       // Anzahl DMA-Puffer
     cfg.buffer_size     = 512;     // Bytes pro DMA-Puffer
 
-    kit.begin(cfg);
-    Serial.println("Audio output initialized.");
-
-    if(!kit.begin(cfg)) {
+    if (!kit.begin(cfg)) {
         Serial.println("Audio output initialization failed.");
         return false;
     }
-    return true; // Return true if initialization is successful
+    Serial.printf("Audio output initialized, %u Hz.\n", (unsigned)cfg.sample_rate);
+    return true;
 }
+
+// TODO Schritt 1: audio_output_set_sample_rate(), audio_output_write(),
+// audio_output_set_volume(), audio_output_get_volume(), audio_output_stop()

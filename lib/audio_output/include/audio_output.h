@@ -4,7 +4,7 @@
  *
  * Owner: Person A
  * Genutzt von: bt_sink (Person A), spotify_connect (Person B)
- * Beschreibung: docs/schnittstellen.md
+ * Beschreibung: docs/interfaces.md
  *
  * PCM-Format für audio_output_write():
  *   16 Bit signed, little endian, Stereo, verschachtelt (L, R, L, R, ...)
@@ -16,7 +16,6 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
-#include <AudioTools.h>
 
 #define AUDIO_OUTPUT_DEFAULT_RATE_HZ 44100
 
